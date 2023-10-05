@@ -1,0 +1,16 @@
+/* CSS Animasi dengan Transformasi */
+@keyframes slide-up {
+    from {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  .slide-up {
+    animation: slide-up 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  }
+  

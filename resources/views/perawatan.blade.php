@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+
+<html
+  lang="en"
+  class="light-style layout-menu-fixed"
+  dir="ltr"
+  data-theme="theme-default"
+  data-assets-path="../assets/"
+  data-template="vertical-menu-template-free"
+>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
+    />
+
+    <title>Perhitungan Kebutuhan Kalori</title>
+
+    <meta name="description" content="" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="<?= url('template/assets/img/favicon/login.png') ?>" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Icons. Uncomment required icon fonts -->
+    <link rel="stylesheet" href="<?= url('template/assets/vendor/fonts/boxicons.css') ?>" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="<?= url('template/assets/vendor/css/core.css') ?>" class="template-customizer-core-css" />
+    <link rel="stylesheet" href="<?= url('template/assets/vendor/css/theme-default.css') ?>" class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="<?= url('template/assets/css/demo.css') ?>" />
+
+    <!-- Vendors CSS -->
+    <link rel="stylesheet" href="<?= url('template/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') ?>" />
+
+    <link rel="stylesheet" href="<?= url('template/assets/vendor/libs/apex-charts/apex-charts.css') ?>" />
+
+    <!-- Page CSS -->
+
+    <!-- Helpers -->
+    <script src="<?= url('template/assets/vendor/js/helpers.js') ?>"></script>
+
+    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+    <script src="<?= url('template/assets/js/config.js') ?>"></script>
+  </head>
+
+  <body>
+    <!-- Modal -->
+  
+    <!-- Layout wrapper -->
+    <div class="layout-wrapper layout-content-navbar">
+      <div class="layout-container">
+        <!-- Menu -->
+
+        <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme" >
+          <div class="app-brand">
+            <a href="dashboard" class="">
+              <center><h4>Konsultasi Gizi</h4></center>
+            </a>            
+            <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
+              <i class="bx bx-chevron-left bx-sm align-middle"></i>
+            </a>
+          </div>
+
+          <div class="menu-inner-shadow">
+          </div>
+
+          <ul class="menu-inner py-1">
+            <li class="menu-header small text-uppercase"><span class="menu-header-text"><h5>{{auth()->user()->level}}</h5></li>
+                <div></div>
+                         {{-- copy dari sini --}}
+            <!-- Dashboard -->
+            <li class="menu-item">
+              <a href="dashboard" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div data-i18n="Analytics">Dashboard</div>
+              </a>
+            </li>
+
+            <!-- Layouts -->
+            <li class="menu-item active">
+              <a href="perawatan" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-detail"></i>
+                <div data-i18n="Perawatan">Data Kamar</div>
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="input-pasien-rawatinap" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-detail"></i>
+                <div data-i18n="input-pasien-rawatinap">Input Pasien</div>
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="kelola-pasien-rawatinap" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-detail"></i>
+                <div data-i18n="kelola-pasien-rawatinap">Data Pasien</div>
+              </a>
+            </li>
+        <!-- Misc -->
+        <li class="menu-header small text-uppercase"><span class="menu-header-text">Misc</span></li>
+        <li class="menu-item">
+          <a
+            href="edit"class="menu-link"
+          >
+            <i class="menu-icon tf-icons bx bx-user"></i>
+            <div data-i18n="update">Edit Profil</div>
+          </a>
+        </li>
+    <li class="menu-item">
+      <a
+        href="/actionlogout"
+        class="menu-link"
+      >
+        <i class="menu-icon tf-icons bx bx-power-off me-2"></i>
+        <div data-i18n="login">Logout</div>
+      </a>
+    </li>
+      </ul>
+    </aside>
+    <!-- Layout container -->
+    <div class="layout-page">
+      <!-- Navbar -->
+      <nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme" id="layout-navbar">
+        <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
+          <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
+            <i class="bx bx-menu bx-sm"></i>
+          </a>
+        </div>
+
+        <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+          <ul class="navbar-nav flex-row align-items-center ms-auto">
+              <!-- User -->
+              <a href="{{ route('profil') }}" class="menu-link">
+                  {{ auth()->user()->name }}
+                  <div class="avatar avatar-online">
+                      <img src="{{ URL::asset('image/profile.png') }}" width="100" height="100" alt="" class="w-px-40 h-auto rounded-circle">
+                  </div>
+              </a>
+          </ul>
+      </div>
+      </nav>
+      
+      {{-- Sampe sini --}}
+      {{-- Isi konten --}}
+      <div class="container flex container-p-y">
+        <div class="row">
+            <div class="col-sm-15">
+                <div class="card">
+                    <div class="card-body">
+                        {{-- <div class="container mx-5">
+                            <div class="row">
+                                @if ($data->count() > 0)
+                                @foreach ($data as $item)
+                                <div class="col-lg-6 col-md-6 col-sm-12 mt-5">
+                                    <div class="card" style="background-color: rgba(122, 191, 255, 0.356);">
+                                        <div class="card-body">
+                                          <h3 class="card-title">Kamar Kartini : </h3>
+                                          <h3 class="card-title">Kelas I </h3>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endforeach
+                                @else
+                                <div class="col-12 mt-3">
+                                    <p>Tidak ada data yang tersedia.</p>
+                                </div>
+                                @endif
+                            </div> --}}
+                            <div class="row">
+                              <div class="col-4">
+                                <div class="card" style="background-color: rgba(122, 191, 255, 0.356);">
+                                    <div class="card-body">
+                                      <h3 class="card-title">Kamar Kartini : </h3>
+                                      <h3 class="card-title">Kelas I </h3>
+                                      @if ($kartiniI >= 4)
+                                          Kamar Penuh
+                                      @else
+                                          <h4>Jumlah Pasien : {{$kartiniI}}</h4>
+                                      @endif
+                                    </div>
+                                </div>
+                              </div>
+                                <div class="col-4">
+                                  <div class="card" style="background-color: rgba(122, 191, 255, 0.356);">
+                                      <div class="card-body">
+                                        <h3 class="card-title">Kamar Kartini : </h3>
+                                        <h3 class="card-title">Kelas II </h3>
+                                        @if ($kartiniII >= 4)
+                                          Kamar Penuh
+                                      @else
+                                          <h4>Jumlah Pasien : {{$kartiniII}}</h4>
+                                      @endif
+                                      </div>
+                                  </div>
+                              </div>
+                                <div class="col-4">
+                                  <div class="card" style="background-color: rgba(122, 191, 255, 0.356);">
+                                      <div class="card-body">
+                                        <h3 class="card-title">Kamar Kartini : </h3>
+                                        <h3 class="card-title">Kelas III </h3>
+                                        @if ($kartiniIII >= 4)
+                                          Kamar Penuh
+                                      @else
+                                          <h4>Jumlah Pasien : {{$kartiniIII}}</h4>
+                                      @endif
+                                      </div>
+                                  </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-4 mt-3">
+                                <div class="card" style="background-color: rgba(122, 191, 255, 0.356);">
+                                    <div class="card-body">
+                                      <h3 class="card-title">Kamar Cut Maria : </h3>
+                                      <h3 class="card-title">Kelas I </h3>
+                                      @if ($cutmariaI >= 4)
+                                          Kamar Penuh
+                                      @else
+                                          <h4>Jumlah Pasien : {{$cutmariaI}}</h4>
+                                      @endif
+                                    </div>
+                                </div>
+                              </div>
+                                <div class="col-4 mt-3">
+                                  <div class="card" style="background-color: rgba(122, 191, 255, 0.356);">
+                                      <div class="card-body">
+                                        <h3 class="card-title">Kamar Cut Maria : </h3>
+                                        <h3 class="card-title">Kelas II </h3>
+                                        @if ($cutmariaII >= 4)
+                                          Kamar Penuh
+                                      @else
+                                          <h4>Jumlah Pasien : {{$cutmariaII}}</h4>
+                                      @endif
+                                      </div>
+                                  </div>
+                              </div>
+                                <div class="col-4 mt-3">
+                                  <div class="card" style="background-color: rgba(122, 191, 255, 0.356);">
+                                      <div class="card-body">
+                                        <h3 class="card-title">Kamar Cut Maria : </h3>
+                                        <h3 class="card-title">Kelas III </h3>
+                                        @if ($cutmariaIII >= 4)
+                                          Kamar Penuh
+                                      @else
+                                          <h4>Jumlah Pasien : {{$cutmariaIII}}</h4>
+                                      @endif
+                                      </div>
+                                  </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-4 mt-3">
+                                <div class="card" style="background-color: rgba(122, 191, 255, 0.356);">
+                                    <div class="card-body">
+                                      <h3 class="card-title">Kamar Fatmawati : </h3>
+                                      <h3 class="card-title">Kelas I </h3>
+                                      @if ($fatmawatiI >= 4)
+                                          Kamar Penuh
+                                      @else
+                                          <h4>Jumlah Pasien : {{$fatmawatiI}}</h4>
+                                      @endif
+                                    </div>
+                                </div>
+                              </div>
+                                <div class="col-4 mt-3">
+                                  <div class="card" style="background-color: rgba(122, 191, 255, 0.356);">
+                                      <div class="card-body">
+                                        <h3 class="card-title">Kamar Fatmawati : </h3>
+                                        <h3 class="card-title">Kelas II </h3>
+                                        @if ($fatmawatiII >= 4)
+                                            Kamar Penuh
+                                        @else
+                                            <h4>Jumlah Pasien : {{$fatmawatiII}}</h4>
+                                        @endif
+                                      </div>
+                                  </div>
+                              </div>
+                                <div class="col-4 mt-3">
+                                  <div class="card" style="background-color: rgba(122, 191, 255, 0.356);">
+                                      <div class="card-body">
+                                        <h3 class="card-title">Kamar Fatmawati : </h3>
+                                        <h3 class="card-title">Kelas III </h3>
+                                        @if ($fatmawatiIII >= 4)
+                                            Kamar Penuh
+                                        @else
+                                            <h4>Jumlah Pasien : {{$fatmawatiIII}}</h4>
+                                        @endif
+                                      </div>
+                                  </div>
+                              </div>
+                            </div>
+                            <div class="row mt-4">
+                              <table class="table table-responsive">
+                                <thead class="table table-info">
+                                  <tr>
+                                    <th>No</th>
+                                    <th>Nama Pasien</th>
+                                    <th>Nama Kamar</th>
+                                    <th>Kelas Kamar</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  @foreach ($data as $item)
+                                  <tr>
+                                    <td> {{$loop->iteration}} </td>
+                                    <td> {{$item->pasiens->nama_lengkap}} </td>
+                                    <td> {{$item->nama_kamar}} </td>
+                                    <td> {{$item->kelas_kamar}} </td>
+                                  </tr>
+                                  @endforeach
+                                </tbody>
+                              </table>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+<!-- Akhir Konten -->
+
+<footer class="content-footer footer bg-footer-theme">
+    <div class="container-xxl d-flex flex-wrap center-content-between py-2 flex-md-row flex-column">
+        <center>SIKKP@2023 Politeknik TEDC Bandung
+    </div>
+</footer>
+</body>
+</html>
